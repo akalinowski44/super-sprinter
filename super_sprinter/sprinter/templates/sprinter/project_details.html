@@ -1,0 +1,38 @@
+{% extends "sprinter/base.html" %}
+
+{% block title %}Project details{% endblock %}
+
+{% block content %}
+
+<h2>{{ project.project_title }}</h2>
+
+{% if stories %}
+    <table border="1">
+        <tr>
+            <th>Story title</th>
+            <th>User story</th>
+            <th>Acceptance Criteria</th>
+            <th>Business Value</th>
+            <th>Estimation</th>
+            <th>Story Value</th>
+        </tr>
+    {% for story in stories %}
+        <tr>
+            <td>{{ story.story_title }}</td>
+            <td>{{ story.user_story }}</td>
+            <td>{{ story.acceptance_criteria }}</td>
+            <td>{{ story.business_value }}</td>
+            <td>{{ story.estimation }}</td>
+            <td>{{ story.value }}</td>
+        </tr>
+
+    {% endfor %}
+
+    </table>
+
+{% else %}
+    This project has no stories
+{% endif %}
+
+
+{% endblock %}

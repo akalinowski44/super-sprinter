@@ -1,9 +1,11 @@
+import datetime
+
 from django.db import models
 
 
 class Project(models.Model):
     project_title = models.CharField(max_length=30)
-    pub_date = models.DateTimeField('creation date')
+    pub_date = models.DateTimeField(default=datetime.datetime.now)
 
     def __str__(self):
         return self.project_title
@@ -17,6 +19,10 @@ class Story(models.Model):
     acceptance_criteria = models.TextField()
     business_value = models.PositiveIntegerField(default=0)
     estimation = models.PositiveIntegerField(default=0)
+
+    @property
+    def value(self):
+        return self.business_value // self.estimation
 
     class Meta:
         verbose_name = "Story"
